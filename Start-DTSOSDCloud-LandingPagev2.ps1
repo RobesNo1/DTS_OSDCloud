@@ -24,14 +24,14 @@ $Global:MyOSDCloud = [ordered]@{
 }
 
 # --- Info Banner ---
-Write-Host ([Environment]::NewLine + "Starting OSDCloud for $OSEdition...") -ForegroundColor Yellow
+Write-Host "`nStarting OSDCloud for $OSEdition..." -ForegroundColor Yellow
 Write-Host ""
 
 # --- Start Deployment ---
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
 # --- Post Deployment: SetupComplete Injection ---
-Write-Host ([Environment]::NewLine + "Injecting SetupComplete.cmd and scripts from WinPE (X:)...") -ForegroundColor Cyan
+Write-Host "`nInjecting SetupComplete.cmd and scripts from WinPE (X:)..." -ForegroundColor Cyan
 
 # Source from WinPE (RAMDisk)
 $sourceFolder             = "X:\OSDCloud"
@@ -83,5 +83,5 @@ if (Test-Path $autopilotScriptSource) {
 }
 
 # --- Reboot ---
-Write-Host ([Environment]::NewLine + "Deployment complete. Rebooting into OOBE...") -ForegroundColor Green
+Write-Host "`nDeployment complete. Rebooting into OOBE..." -ForegroundColor Green
 wpeutil reboot
