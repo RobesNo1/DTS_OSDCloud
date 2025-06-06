@@ -31,13 +31,12 @@ Write-Host ""
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
 # --- Post Deployment: SetupComplete Injection ---
-Write-Host "`nInjecting SetupComplete.cmd and scripts from WinPE (X:)..." -ForegroundColor Cyan
+Write-Host "`nInjecting SetupComplete.cmd and Export-LocalServerCopy.ps1 from WinPE (X:)..." -ForegroundColor Cyan
 
 # Source from WinPE (RAMDisk)
 $sourceFolder             = "X:\OSDCloud"
 $setupCmdSource           = "$sourceFolder\SetupComplete.cmd"
 $exportScriptSource       = "$sourceFolder\Export-LocalServerCopy.ps1"
-$autopilotScriptSource    = "$sourceFolder\Get-WindowsAutoPilotInfo.ps1"
 
 # Target in deployed OS
 $targetRoot               = "$env:SystemDrive"
@@ -45,7 +44,6 @@ $setupScriptPath          = Join-Path $targetRoot "Windows\Setup\Scripts"
 $osdCloudFolder           = Join-Path $targetRoot "OSDCloud"
 $setupCmdTarget           = Join-Path $setupScriptPath "SetupComplete.cmd"
 $exportScriptTarget       = Join-Path $osdCloudFolder "Export-LocalServerCopy.ps1"
-$autopilotScriptTarget    = Join-Path $osdCloudFolder "Get-WindowsAutoPilotInfo.ps1"
 
 # Create required folders
 if (-not (Test-Path $setupScriptPath)) {
@@ -72,14 +70,6 @@ if (Test-Path $exportScriptSource) {
     Write-Host "✔ Export-LocalServerCopy.ps1 copied to $osdCloudFolder"
 } else {
     Write-Host "⚠ Export-LocalServerCopy.ps1 not found at $exportScriptSource" -ForegroundColor Red
-}
-
-# Copy Get-WindowsAutoPilotInfo.ps1
-if (Test-Path $autopilotScriptSource) {
-    Copy-Item -Path $autopilotScriptSource -Destination $autopilotScriptTarget -Force
-    Write-Host "✔ Get-WindowsAutoPilotInfo.ps1 copied to $osdCloudFolder"
-} else {
-    Write-Host "⚠ Get-WindowsAutoPilotInfo.ps1 not found at $autopilotScriptSource" -ForegroundColor Red
 }
 
 # --- Reboot ---
