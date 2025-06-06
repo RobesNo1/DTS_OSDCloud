@@ -84,8 +84,4 @@ if (Test-Path $autopilotScriptSource) {
 
 # --- Reboot ---
 Write-Host "`nDeployment complete. Rebooting into OOBE..." -ForegroundColor Green
-
-# Pause to view any output or errors
-Read-Host -Prompt "Press Enter to reboot"
-
 wpeutil reboot
