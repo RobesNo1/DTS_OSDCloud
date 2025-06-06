@@ -73,5 +73,6 @@ if (Test-Path $exportScriptSource) {
 }
 
 # --- Reboot ---
-Write-Host "`nDeployment complete. Rebooting into OOBE..." -ForegroundColor Green
+Write-Host "`nDeployment complete. Press any key to reboot into OOBE..." -ForegroundColor Green
+[void][System.Console]::ReadKey($true)
 wpeutil reboot
