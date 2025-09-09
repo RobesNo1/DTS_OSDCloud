@@ -30,9 +30,6 @@ Write-Host ""
 # --- Start Deployment ---
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
-# --- Post Deployment: SetupComplete Injection ---
-Robocopy  X:\OSDCloud\Config\Scripts\SetupComplete C:\Windows\Setup\Scripts /IS
-
 # --- Reboot ---
 Write-Host "`nDeployment complete. Press any key to reboot into OOBE..." -ForegroundColor Green
 [void][System.Console]::ReadKey($true)
