@@ -31,29 +31,7 @@ Write-Host ""
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
 # --- Post Deployment: SetupComplete Injection ---
-Write-Host "`nInjecting custom SetupComplete.cmd from WinPE (X:)..." -ForegroundColor Cyan
-
-# Correct source path
-$setupCmdSource   = "X:\OSDCloud\Config\Scripts\SetupComplete\SetupComplete.cmd"
-
-# Target in deployed OS
-$targetRoot       = "$env:SystemDrive"
-$setupScriptPath  = Join-Path $targetRoot "Windows\Setup\Scripts"
-$setupCmdTarget   = Join-Path $setupScriptPath "SetupComplete.cmd"
-
-# Ensure target folder exists
-if (-not (Test-Path $setupScriptPath)) {
-    New-Item -ItemType Directory -Path $setupScriptPath -Force | Out-Null
-    Write-Host "✔ Created folder: $setupScriptPath"
-}
-
-# Copy SetupComplete.cmd
-if (Test-Path $setupCmdSource) {
-    Copy-Item -Path $setupCmdSource -Destination $setupCmdTarget -Force
-    Write-Host "✔ Custom SetupComplete.cmd copied to $setupScriptPath"
-} else {
-    Write-Host "⚠ SetupComplete.cmd not found at $setupCmdSource" -ForegroundColor Red
-}
+Robocopy  X:\OSDCloud\Config\Scripts\SetupComplete\SetupComplete.cmd C:\Windows\Setup\Scripts /IS
 
 # --- Reboot ---
 Write-Host "`nDeployment complete. Press any key to reboot into OOBE..." -ForegroundColor Green
