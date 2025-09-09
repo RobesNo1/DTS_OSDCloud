@@ -34,7 +34,7 @@ Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation
 Write-Host "`nInjecting custom SetupComplete.cmd from WinPE (X:)..." -ForegroundColor Cyan
 
 # Source in WinPE
-$sourceFolder     = "X:\OSDCloud"
+$sourceFolder     = "X:\OSDCloud\Config\Scripts\SetupComplete"
 $setupCmdSource   = "$sourceFolder\SetupComplete.cmd"
 
 # Target in deployed OS
