@@ -1,5 +1,5 @@
 # =======================
-# Custom OSDCloud Landing Page (v1.6 - SetupComplete Replacement Only)
+# Custom OSDCloud Landing Page (v1.7 - SetupComplete Replacement Only)
 # =======================
 
 # --- OS Selection Variables ---
@@ -33,9 +33,8 @@ Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation
 # --- Post Deployment: SetupComplete Injection ---
 Write-Host "`nInjecting custom SetupComplete.cmd from WinPE (X:)..." -ForegroundColor Cyan
 
-# Source in WinPE
-$sourceFolder     = "X:\OSDCloud\config\scripts\SetupComplete"
-$setupCmdSource   = "$sourceFolder\SetupComplete.cmd"
+# Correct source path
+$setupCmdSource   = "X:\OSDCloud\Config\Scripts\SetupComplete\SetupComplete.cmd"
 
 # Target in deployed OS
 $targetRoot       = "$env:SystemDrive"
