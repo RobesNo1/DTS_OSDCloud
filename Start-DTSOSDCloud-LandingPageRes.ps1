@@ -60,6 +60,6 @@ if (-not $SourceUnattend) {
     reg.exe unload HKLM\OFFSYS | Out-Null
     Write-Host "Set offline registry UnattendFile -> $Dest2"
 }
-
+Pause
 # 5) Reboot to continue setup/OOBE using your answer file
 wpeutil reboot
