@@ -21,7 +21,7 @@ $Global:MyOSDCloud = [ordered]@{
 
 # Optional banner
 Write-Host ""
-Write-Host "Starting OSDCloud for Windows 11 Enterprise..." -ForegroundColor Yellow
+Write-Host "Starting OSDCloud for Windows 11 Professional - Resilience Build" -ForegroundColor Yellow
 Write-Host ""
 
 # Start the deployment
