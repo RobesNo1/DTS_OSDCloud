@@ -1,22 +1,22 @@
 # Set Windows OS variables
-$OSName = 'Windows 11 24H2 x64'
-$OSEdition = 'Pro'
+$OSName      = 'Windows 11 24H2 x64'
+$OSEdition   = 'Pro'
 $OSActivation = 'Retail'
-$OSLanguage = 'en-gb'
+$OSLanguage  = 'en-gb'
 
 # Set OSDCloud global configuration
 $Global:MyOSDCloud = [ordered]@{
-    Restart = $false
-    RecoveryPartition = $true
-    OEMActivation = $true
-    WindowsUpdate = $true
-    WindowsUpdateDrivers = $true
-    WindowsDefenderUpdate = $true
-    SetTimeZone = $true
-    ClearDiskConfirm = $false
-    ShutdownSetupComplete = $false
-    SyncMSUpCatDriverUSB = $true
-    CheckSHA1 = $true
+    Restart                 = $false
+    RecoveryPartition       = $true
+    OEMActivation           = $true
+    WindowsUpdate           = $true
+    WindowsUpdateDrivers    = $true
+    WindowsDefenderUpdate   = $true
+    SetTimeZone             = $true
+    ClearDiskConfirm        = $false
+    ShutdownSetupComplete   = $false
+    SyncMSUpCatDriverUSB    = $true
+    CheckSHA1               = $true
 }
 
 # Optional banner
@@ -24,8 +24,13 @@ Write-Host ""
 Write-Host "Starting OSDCloud for Windows 11 Professional - Resilience Build" -ForegroundColor Yellow
 Write-Host ""
 
-# Start the deployment
-Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
+# Start the deployment and point OOBEDeploy at your config folder
+Start-OSDCloud `
+    -OSName $OSName `
+    -OSEdition $OSEdition `
+    -OSActivation $OSActivation `
+    -OSLanguage $OSLanguage `
+    -OOBEDeployConfig "X:\OSDCloud\Config\OOBEDeploy"
 
 # Reboot when complete
 wpeutil reboot
