@@ -27,6 +27,8 @@ Write-Host ""
 # Start the deployment
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
+Pause
+
 # Reboot when complete
 wpeutil reboot
 
