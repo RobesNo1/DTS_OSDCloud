@@ -8,7 +8,7 @@ $OSLanguage = 'en-gb'
 $Global:MyOSDCloud = [ordered]@{
     Restart = $false
     RecoveryPartition = $true
-    OEMActivation = $true
+    OEMActivation = $false
     WindowsUpdate = $true
     WindowsUpdateDrivers = $true
     WindowsDefenderUpdate = $true
@@ -26,8 +26,6 @@ Write-Host ""
 
 # Start the deployment
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
-
-Pause
 
 # Reboot when complete
 wpeutil reboot
